@@ -1,0 +1,13 @@
+node("jenkins_1"){
+    stage('vcs'){
+        sh 'sudo apt update',
+        sh 'sudo apt update',
+         sh 'sudo apt install apache2 -y',
+         sh 'sudo apt install php libapache2-mod-php php-mysql -y'
+
+    }
+    stage('copying content') {
+        sh 'cd /var/www/html/,
+        sh 'echo "<?php phpinfo(); ?>" > info.php
+    }
+}

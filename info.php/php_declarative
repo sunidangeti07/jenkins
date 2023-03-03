@@ -1,0 +1,22 @@
+pipeline {
+    agent {label 'jenkins_1'}
+    stages{
+        stage('install'){
+            steps{
+                sh 'sudo apt update -y'
+                sh 'sudo apt install apache2 -y'
+                sh 'sudo apt install php libapache2-mod-php php-mysql -y'
+            }
+        }
+        stage('navigation'){
+            steps{
+               
+                sh 'sudo touch /var/www/html/info.php'
+                sh 'sudo chmod 777 /var/www/html/info.php'
+                sh 'echo "<?php phpinfo(); ?>" > /var/www/html/info.php'
+                sh 'sudo systemctl restart apache2'
+            }
+        }
+    }
+
+}
